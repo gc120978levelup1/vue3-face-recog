@@ -14,14 +14,14 @@ const emit = defineEmits([
 // example
 const props = defineProps([
     'video',
-    'canvas2',
+    'canvas',
 ])
 
 // code starts here ////////////////////////////////////////////////////////////////////////////////
 
 // refs
 const faceDatabaseAPI = ref(null);
-const displaySize = { width: props.canvas2.width, height: props.canvas2.height };
+const displaySize = { width: props.canvas.width, height: props.canvas.height };
 
 // for exposed function
 // URLfolder is the folder location of AI weights
@@ -29,6 +29,20 @@ const loadModels = (URLfolder) => {
   faceapi.nets.ssdMobilenetv1.loadFromUri(URLfolder);
   faceapi.nets.faceRecognitionNet.loadFromUri(URLfolder);
   faceapi.nets.faceLandmark68Net.loadFromUri(URLfolder);
+};
+
+const startWebcam = () => {
+  navigator.mediaDevices
+    .getUserMedia({
+      video: true,
+      audio: false,
+    })
+    .then((stream) => {
+      props.video.srcObject = stream;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 // training time for database stored faces
@@ -120,7 +134,7 @@ const startFaceMatching = () => {
     // resize detected face to match canvas2 dimensions
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
-    props.canvas2.getContext("2d").clearRect(0, 0, props.canvas2.width, props.canvas2.height); // just clearing the screen/canvas2
+    props.canvas.getContext("2d").clearRect(0, 0, props.canvas.width, props.canvas.height); // just clearing the screen/canvas2
 
     // for each face detected find a match from the stored face Database
     const recognizedFaces = resizedDetections.map((detectedFace) => {
@@ -141,7 +155,7 @@ const startFaceMatching = () => {
       const drawBox = new faceapi.draw.DrawBox(box, {
         label: recognizedFace,
       });
-      drawBox.draw(props.canvas2);
+      drawBox.draw(props.canvas);
     });
   }, 100);
 }
@@ -152,6 +166,7 @@ const startFaceMatching = () => {
 // used as input
 defineExpose({
     loadModels,
+    startWebcam,
     trainFaceMatching,
     obtainFaceMatchingData,
     startFaceMatching,

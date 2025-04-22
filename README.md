@@ -96,7 +96,7 @@ const handleMatchFace = (event) => {
   <div class="relative m-2 border rounded-lg overflow-hidden w-100">
     <video ref="video" width="600" height="450" autoplay class="w-100"></video>
     <canvas ref="canvas2" width="600" height="450" class="absolute top-0 left-0 border rounded-lg w-100"></canvas>
-    <Vue3FaceRecog ref="faceRecog" :video="video" :canvas2="canvas2" @onTrainingDone="handleTrainingDone" @onMatchFace="handleMatchFace"/>
+    <Vue3FaceRecog ref="faceRecog" :video="video" :canvas="canvas2" @onTrainingDone="handleTrainingDone" @onMatchFace="handleMatchFace"/>
   </div>
   <br>
   <input type="text" class="border rounded-lg"/>
