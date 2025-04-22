@@ -106,67 +106,67 @@ const handleMatchFace = (event) => {
 
 ## Changes in src/components/index.ts
 
-* Vue3ComponentName
+* Vue3FaceRecog
 
 ```sh
-import Vue3ComponentName from './Vue3ComponentName.vue'
-export default Vue3ComponentName;
+import Vue3FaceRecog from './Vue3FaceRecog.vue'
+export default Vue3FaceRecog;
 ```
 
 ## Changes in src/components/main.ts
 
-* Vue3ComponentName
+* Vue3FaceRecog
 
 ```sh
 import type { App } from 'vue';
-import Vue3ComponentName from "@/components";
+import Vue3FaceRecog from "@/components";
 export default {
   install: (app: App) => {
-    app.component('Vue3ComponentName', Vue3ComponentName);
+    app.component('Vue3FaceRecog', Vue3FaceRecog);
   }
 };
-export {Vue3ComponentName} ;
+export {Vue3FaceRecog} ;
 ```
 
-## Change the name of src/components/Vue3ComponentName.vue
+## Change the name of src/components/Vue3FaceRecog.vue
 
 * as name of your component
 * modify the files content as per your requirement
 
 ## Changes in package.json
 
-* Vue3ComponentName
-* vue3-component-name
+* Vue3FaceRecog
+* vue3-face-recog
 
 ```sh
 {
-  "name": "vue3-component-name",
+  "name": "vue3-face-recog",
   "private": false,
   "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/vue3-component-name.umd.js",
-  "module": "./dist/vue3-component-name.js",
+  "main": "./dist/vue3-face-recog.umd.js",
+  "module": "./dist/vue3-face-recog.js",
   "exports": {
     ".": {
-      "import": "./dist/vue3-component-name.es.js",
-      "require": "./vue3-component-name.umd.js"
+      "import": "./dist/vue3-face-recog.es.js",
+      "require": "./vue3-face-recog.umd.js"
     }
   },
   "types": "./dist/main.d.ts",
   "keywords": [
-    "vue3-component-name",
-    "Vue3ComponentName"
+    "vue3-face-recog",
+    "Vue3FaceRecog"
   ],
 
 ```
 
 ## Changes in vite.config.ts
 
-* Vue3ComponentName
-* vue3-component-name
+* Vue3FaceRecog
+* vue3-face-recog
 
 example:
 ```sh
@@ -175,9 +175,9 @@ example:
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: "src/components/index.ts",
-      name: "Vue3ComponentName",
+      name: "Vue3FaceRecog",
       formats: ["es", "cjs", "umd"],
-      fileName: (format) => `vue3-component-name.${format}.js`,
+      fileName: (format) => `vue3-face-recog.${format}.js`,
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -210,7 +210,7 @@ npm link
 
 ex. in testing component user side
 ```sh
-npm link vue3-component-name
+npm link vue3-face-recog
 ```
 
 ex. login to publish
