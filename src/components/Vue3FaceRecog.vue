@@ -24,10 +24,11 @@ const faceDatabaseAPI = ref(null);
 const displaySize = { width: props.canvas2.width, height: props.canvas2.height };
 
 // for exposed function
-const loadModels = () => {
-  faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
-  faceapi.nets.faceRecognitionNet.loadFromUri("/models");
-  faceapi.nets.faceLandmark68Net.loadFromUri("/models");
+// URLfolder is the folder location of AI weights
+const loadModels = (URLfolder) => {
+  faceapi.nets.ssdMobilenetv1.loadFromUri(URLfolder);
+  faceapi.nets.faceRecognitionNet.loadFromUri(URLfolder);
+  faceapi.nets.faceLandmark68Net.loadFromUri(URLfolder);
 };
 
 // training time for database stored faces
