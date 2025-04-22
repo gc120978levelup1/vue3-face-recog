@@ -74,7 +74,7 @@ const video = ref();
 const canvas2 = ref();
 const faceRecog = ref();
 startWebcam(); // maybe not needed
-loadModels();
+loadModels("/models"); // be sure that /models exists with weight files
 setTimeout(() => {
   trainFaceMatching(training_data); // upon finish it will emit handleTrainingDone(xLabeledFaces) in which xLabeledFaces will be save externally
   // or
