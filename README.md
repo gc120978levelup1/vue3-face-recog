@@ -1,6 +1,6 @@
 # Vue3 Face Recognizer for Laravel + Vue + ShadCn projects
 
-Face Recognizer for bundling Vue3 compoenent to npm package manager
+Face Recognizer for Vue3
 
 ## Use Case
 
