@@ -101,19 +101,20 @@ const handleMatchFace = (event) => {
 
 <template>
 
-                    <div class="relative m-0 p-0 border rounded-lg overflow-hidden w-[600px] h-[450]">
-                        <video ref="video" width="600" height="450" autoplay class="border rounded-lg"></video>
-                        <canvas ref="canvas2" width="600" height="450"
-                            class="absolute top-0 left-0 border rounded-lg"></canvas>
-                        <Vue3FaceRecog ref="faceRecog" :video="video" :canvas="canvas2"
-                            @onTrainingDone="handleTrainingDone" @onMatchFace="handleMatchFace" />
-                    </div>
-                    <br>
-                    <input type="text" class="border rounded-lg" />
-                    <button
-                        class="bg-black text-white px-4 rounded-lg hover:cursor-pointer hover:bg-gray-700 active:bg-gray-500">Save</button>
+  <div class="relative m-0 p-0 border rounded-lg overflow-hidden w-[600px] h-[450]">
+    <video ref="video" width="600" height="450" autoplay class="border rounded-lg"></video>
+    <canvas ref="canvas2" width="600" height="450"
+      class="absolute top-0 left-0 border rounded-lg"></canvas>
+    <Vue3FaceRecog ref="faceRecog" :video="video" :canvas="canvas2"
+      @onTrainingDone="handleTrainingDone" @onMatchFace="handleMatchFace" />
+  </div>
+  <br>
+  <input type="text" class="border rounded-lg" />
+  <button
+    class="bg-black text-white px-4 rounded-lg hover:cursor-pointer hover:bg-gray-700 active:bg-gray-500">Save</button>
 
 </template>
+
 ```
 
 ## Changes in src/components/index.ts
