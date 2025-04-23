@@ -87,7 +87,7 @@ onMounted(() => {
     }, 1000);
     setTimeout(() => {
       faceRecog.value.startFaceMatching();
-    }, 4000); // the length of this setTimeout depends on size of training data
+    }, 4000); // the length of this setTimeout depends on size of training_data
 });
 
 const handleTrainingDone = (event) => {
