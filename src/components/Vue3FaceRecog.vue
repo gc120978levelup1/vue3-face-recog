@@ -21,11 +21,14 @@ const props = defineProps([
 
 // refs
 const faceDatabaseAPI = ref(null);
-const displaySize = { width: props.canvas.width, height: props.canvas.height };
+const displaySize = ref(null);
 
 // for exposed function
 // URLfolder is the folder location of AI weights
 const loadModels = (URLfolder) => {
+  //console.log(props.video);
+  faceapi.nets.ssdMobilenetv1.loadFromUri(URLfolder);
+  //displaySize.value = { width: props.video.width, height: props.video.height };
   faceapi.nets.ssdMobilenetv1.loadFromUri(URLfolder);
   faceapi.nets.faceRecognitionNet.loadFromUri(URLfolder);
   faceapi.nets.faceLandmark68Net.loadFromUri(URLfolder);
@@ -38,6 +41,9 @@ const startWebcam = () => {
       audio: false,
     })
     .then((stream) => {
+      //console.log(props.video);
+      displaySize.value = { width: props.video.width, height: props.video.height };
+      //console.log(displaySize.value);
       props.video.srcObject = stream;
     })
     .catch((error) => {
@@ -128,11 +134,13 @@ const obtainFaceMatchingData = (xlabeledFaceDescriptors) => {
 // emit onMatchFace (face_label)
 const startFaceMatching = () => {
   setInterval(async () => {
+    //console.log("startFaceMatching")
     // detect a face from the webcam //////
+    displaySize.value = { width: props.video.width, height: props.video.height };
     const detections = await faceapi.detectAllFaces(props.video).withFaceLandmarks().withFaceDescriptors();
 
     // resize detected face to match canvas2 dimensions
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+    const resizedDetections = faceapi.resizeResults(detections, displaySize.value);
 
     props.canvas.getContext("2d").clearRect(0, 0, props.canvas.width, props.canvas.height); // just clearing the screen/canvas2
 
@@ -143,8 +151,8 @@ const startFaceMatching = () => {
 
     // lets peek at the results // dere mubutang og emit/event handling
     if (recognizedFaces[0]) {
-      console.log("Name ", recognizedFaces[0].label);
-      console.log("Distance ", recognizedFaces[0].distance);
+      //console.log("Name ", recognizedFaces[0].label);
+      //console.log("Distance ", recognizedFaces[0].distance);
       ///////////////////////////////////////////////////////////////////////////////////////// emit onMatchFace
       emit('onMatchFace', recognizedFaces[0]);
     }
